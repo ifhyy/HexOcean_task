@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, AccountTier
+from .models import CustomUser, AccountTier, Image
 
 
 @admin.register(AccountTier)
@@ -20,6 +20,10 @@ class CustomUserAdmin(UserAdmin):
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
 
+
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ('image', 'user')
 
 
 #

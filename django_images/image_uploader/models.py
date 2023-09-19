@@ -41,4 +41,10 @@ class Image(models.Model):
         on_delete=models.CASCADE,
         related_name='images'
     )
-    image = models.ImageField(upload_to='images/', default=None)
+    image = models.ImageField(upload_to='images/')
+
+    size = models.CharField(max_length=10)
+
+    def __str__(self):
+        return f'image uploaded by {self.user}'
+
