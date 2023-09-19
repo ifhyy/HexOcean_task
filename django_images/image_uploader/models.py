@@ -3,13 +3,23 @@ from django.core.validators import validate_comma_separated_integer_list
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+from django.core.exceptions import ValidationError
+
+
+def validate_thumbnail_sizes(value):
+    for element in value.split(','):
+        if int(element) > 1000:
+            raise ValidationError(f"Thumbnail height cannot be greater than 1000px")
 
 
 class AccountTier(models.Model):
     name = models.CharField(max_length=20, unique=True, verbose_name='Tier')
     thumbnail_sizes = models.CharField(
         max_length=30,
-        validators=[validate_comma_separated_integer_list],
+        validators=[
+            validate_comma_separated_integer_list,
+            validate_thumbnail_sizes
+        ],
         verbose_name='thumbnail height in px')
     originally_uploaded_image = models.BooleanField(
         default=False,
@@ -47,4 +57,5 @@ class Image(models.Model):
 
     def __str__(self):
         return f'image uploaded by {self.user}'
+
 

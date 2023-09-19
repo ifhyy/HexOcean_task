@@ -31,4 +31,11 @@ class ImageSerializer(serializers.Serializer):
         image_url = image.image.url
         return request.build_absolute_uri(image_url)
 
+    def validate_image(self, image):
+        valid_formats = ['image/jpeg', 'image/png']
+        if image.content_type not in valid_formats:
+            raise serializers.ValidationError('Invalid image format. Only JPG and PNG are allowed')
+        return image
+
+
 

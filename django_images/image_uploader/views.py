@@ -1,5 +1,3 @@
-import copy
-
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.parsers import FileUploadParser, MultiPartParser, FormParser
@@ -8,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from PIL import Image as PILImage
-from io import BytesIO
+from django.utils import timezone
 
 from .serailizers import ImageSerializer
 from .models import Image, CustomUser
@@ -17,7 +15,7 @@ from .models import Image, CustomUser
 class ImageAPIView(APIView):
 
     def get(self, request):
-        return Response({'it': 'works'})
+        pass
 
     def post(self, request):
         serializer = ImageSerializer(data=request.data, context={'request': request})
@@ -53,4 +51,3 @@ class ImageAPIView(APIView):
             serialized_objects = ImageSerializer(objects, many=True, context={'request': request})
             return Response(serialized_objects.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
