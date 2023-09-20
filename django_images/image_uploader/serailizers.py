@@ -11,6 +11,7 @@ from io import BytesIO
 class ImageSerializer(serializers.Serializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     size = serializers.CharField(max_length=10, read_only=True)
+    expiring_time_seconds = serializers.IntegerField(required=False)
     image = serializers.ImageField()
 
     def to_representation(self, instances):
@@ -37,5 +38,21 @@ class ImageSerializer(serializers.Serializer):
             raise serializers.ValidationError('Invalid image format. Only JPG and PNG are allowed')
         return image
 
+    def validate(self, data):
+        expiration_value = data['expiring_time_seconds']
+        user = data['user']
+        if not user.account_tier.generate_exp_links:
+            raise serializers.ValidationError(
+                'Your account permissions does not allow you to create expiring links')
+        return data
 
+
+    def validate_expiring_time_seconds(self, value):
+        if value > 30000 or value < 300:
+            raise serializers.ValidationError('You can only specify time between 300 and 30000 seconds')
+        return value
+
+
+class URLSerializer(serializers.Serializer):
+    expiring_link = serializers.CharField()
 
