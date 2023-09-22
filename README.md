@@ -63,5 +63,36 @@ python manage.py runserver
 ```
 Project will be available on http://localhost:8000
 
+## How to use
+Since this application is not supposed to have UI, you're going to need some platform to access API.
+e.g. Postman would be appropriate tool for this.
+In order to pass request parameters, include them in the request body.
+
+### Authentication
+Log in to start.
+
+Two parameters required.
+**username**
+**password**
+
+```shell
+POST.    http://localhost:8000/api-auth/login/
+```
+
+### Image Upload
+Allows user to upload an image whether .png or .jpg
+
+Required parameter
+**image** : a file consisting .png or .jpg image that will be turned into thumbnail
+
+Optional parameter
+**expiring_time_seconds : integer value between 300 and 300000 that specifies expiring link lifetime.
+Causes generating an expiring link to originally uploaded image.
+Note: users with no permission to create exp. links may not include this parameter.
+
+```shell
+POST.    http://localhost:8000/api/v1/images_upload/
+```
+
 ## Creator
 This project was created by Artem Stupak
