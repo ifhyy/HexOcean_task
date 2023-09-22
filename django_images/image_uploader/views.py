@@ -28,7 +28,6 @@ class ExpiringLinkView(APIView):
     permission_classes = (AllowAny,)
 
     def get(self, request):
-        # token = request.query_params.get('token')
         image_id = request.query_params.get('image_id')
         image_path = cache.get(f'image_{image_id}')
 

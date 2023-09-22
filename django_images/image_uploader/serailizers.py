@@ -1,11 +1,4 @@
-from django.core.files.base import ContentFile
-from django.core.files import File
-from django.urls import reverse
 from rest_framework import serializers
-
-from .models import Image, CustomUser
-from PIL import Image as PILImage
-from io import BytesIO
 
 
 class ImageSerializer(serializers.Serializer):
@@ -39,13 +32,13 @@ class ImageSerializer(serializers.Serializer):
         return image
 
     def validate(self, data):
-        expiration_value = data['expiring_time_seconds']
         user = data['user']
+        if not data.get('expiring_time_seconds', False):
+            return data
         if not user.account_tier.generate_exp_links:
             raise serializers.ValidationError(
                 'Your account permissions does not allow you to create expiring links')
         return data
-
 
     def validate_expiring_time_seconds(self, value):
         if value > 30000 or value < 300:

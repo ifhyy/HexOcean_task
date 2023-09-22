@@ -6,7 +6,6 @@ import os
 
 @receiver(pre_delete, sender=Image)
 def delete_image_files(sender, instance, **kwargs):
-    # Удаляем связанные с объектом изображения из папки media
     if instance.image:
         image_path = instance.image.path
         if os.path.exists(image_path):

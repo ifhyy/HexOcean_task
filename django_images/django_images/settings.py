@@ -1,3 +1,4 @@
+import sys
 from datetime import timedelta
 from pathlib import Path
 import os
@@ -115,6 +116,10 @@ STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# TEST_MEDIA_ROOT = os.path.join(BASE_DIR, 'test_media')
+# if 'test' in sys.argv:
+#     MEDIA_ROOT = TEST_MEDIA_ROOT
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
