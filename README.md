@@ -72,7 +72,9 @@ In order to pass request parameters, include them in the request body.
 Log in to start.
 
 Two parameters required.
+
 **username**
+
 **password**
 
 ```shell
@@ -86,7 +88,7 @@ Required parameter
 **image** : a file consisting .png or .jpg image that will be turned into thumbnail
 
 Optional parameter
-**expiring_time_seconds : integer value between 300 and 300000 that specifies expiring link lifetime.
+**expiring_time_seconds** : integer value between 300 and 300000 that specifies expiring link lifetime.
 Causes generating an expiring link to originally uploaded image.
 Note: users with no permission to create exp. links may not include this parameter.
 
