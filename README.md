@@ -45,23 +45,20 @@ DATABASES = {
 ### 6. Apply database migrations
 
 ```shell
-python manage.py makemigrations
 python manage.py migrate
 python manage.py createcachetable
 ```
 
-### 7. Create superuser for admin panel
-
-```shell
-python manage.py createsuperuser
-```
-
-### 8. Run Django development server
+### 7. Run Django development server
 
 ```shell
 python manage.py runserver
 ```
 Project will be available on http://localhost:8000
+
+Note: user admin is already created by migrations so you can log in administration panel.
+
+**username:** admin  **password :** 1q2w3e
 
 ## How to use
 Since this application is not supposed to have UI, you're going to need some platform to access API.
@@ -69,13 +66,13 @@ e.g. Postman would be appropriate tool for this.
 In order to pass request parameters, include them in the request body.
 
 ### Authentication
-Log in to start.
+Log in to start. One admin user in already created so you can insert this data:
 
 Two parameters required.
 
-**username**
+**username** : admin
 
-**password**
+**password** : 1q2w2e
 
 ```shell
 POST.    http://localhost:8000/api-auth/login/

@@ -71,7 +71,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'images_upload_db',
         'USER': 'postgres',
-        'PASSWORD': 'password',
+        'PASSWORD': 'sosipisos',
         'HOST': 'localhost'
     }
 }
