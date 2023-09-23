@@ -71,7 +71,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'images_upload_db',
         'USER': 'postgres',
-        'PASSWORD': 'sosipisos',
+        'PASSWORD': 'password',
         'HOST': 'localhost'
     }
 }
@@ -116,10 +116,6 @@ STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# TEST_MEDIA_ROOT = os.path.join(BASE_DIR, 'test_media')
-# if 'test' in sys.argv:
-#     MEDIA_ROOT = TEST_MEDIA_ROOT
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

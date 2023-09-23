@@ -3,6 +3,7 @@ from django.db import migrations
 
 def create_initial_data(apps, schema_editor):
     AccountTier = apps.get_model('image_uploader', 'AccountTier')
+    CustomUser = apps.get_model('image_uploader', 'CustomUser')
     if not AccountTier.objects.exists():
         initial_data = [
             AccountTier(name='Basic',
@@ -19,6 +20,8 @@ def create_initial_data(apps, schema_editor):
                         generate_exp_links=True),
         ]
         AccountTier.objects.bulk_create(initial_data)
+        admin = CustomUser.objects.create_superuser(username='admin', password='1q2w3e', account_tier=initial_data[0])
+        admin.save()
 
 
 class Migration(migrations.Migration):
