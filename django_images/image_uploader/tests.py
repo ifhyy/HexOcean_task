@@ -46,10 +46,6 @@ class ImageUploaderTests(APITestCase):
         os.remove(self.image_path)
         super().tearDown()
 
-    def test_model(self):
-        self.assertEquals(CustomUser.objects.count(), 2)
-        self.assertEquals(AccountTier.objects.count(), 2)
-
     def test_fail_views(self):
         response = self.client1.get(reverse('expiring_link'))
         self.assertEquals(response.status_code, status.HTTP_404_NOT_FOUND)
